@@ -7,7 +7,7 @@ steps:
 - name: build
   image: gradle
   commands:
-    - "gradle build ./myapp"
+    - "gradle build "
 
 - name: publish  
   image: plugins/docker
