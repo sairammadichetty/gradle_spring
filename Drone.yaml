@@ -1,1 +1,21 @@
+kind: pipeline
+type: kubernetes
+name: default
 
+steps:
+
+- name: build
+  image: gradle
+  commands:
+    - "gradle build -o ./myapp"
+
+- name: publish  
+  image: plugins/docker
+  settings:
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+    repo: msairam/gradle_drone
+    auto_tag: true
+    auto_tag_suffix: drone-build
