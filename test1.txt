@@ -6,3 +6,5 @@ done docker registry integration in harness hence it's an test commit
 
 Testing1..
 change
+
+testing sonar integration
