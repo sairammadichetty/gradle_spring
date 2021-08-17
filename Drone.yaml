@@ -1,4 +1,4 @@
-##droneyaml..
+##droneyaml
 kind: pipeline
 type: kubernetes
 name: default
@@ -9,6 +9,14 @@ steps:
   image: gradle
   commands:
     - "gradle build "
+    
+- name: code-analysis
+  image: aosapps/drone-sonar-plugin
+  settings:
+    sonar_host:
+      from_secret: sonar_host
+    sonar_token:
+      from_secret: sonar_token
 
 - name: publish  
   image: plugins/docker
