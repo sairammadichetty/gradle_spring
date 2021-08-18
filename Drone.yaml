@@ -1,4 +1,4 @@
-##droneyaml...!!!!!
+##droneyaml...!!!!!!
 kind: pipeline
 type: kubernetes
 name: default
