@@ -29,6 +29,53 @@ dependencies {
 	}
 }
 
-test {
-	useJUnitPlatform()
+// Add your dependencies here.
+//  compile 'com.google.cloud:google-cloud:+'   // Latest Cloud API's http://googlecloudplatform.github.io/google-cloud-java
+
+    testCompile 'junit:junit:4.12'
+    testCompile 'com.google.truth:truth:0.33'
+    compile group: 'org.mockito', name: 'mockito-core', version: '+'
+    compile group: 'org.powermock', name: 'powermock-api-mockito2', version: '+'
+    compile group: 'org.powermock', name: 'powermock-module-junit4', version: '+'
+
+    testCompile 'com.google.appengine:appengine-testing:+'
+    testCompile 'com.google.appengine:appengine-api-stubs:+'
+    testCompile 'com.google.appengine:appengine-tools-sdk:+'
 }
+
+// Always run unit tests
+appengineDeploy.dependsOn test
+appengineStage.dependsOn test
+
+appengine {  // App Engine tasks configuration
+    deploy {   // deploy configuration
+
+    }
+}
+
+test {
+    useJUnit()
+    testLogging.showStandardStreams = true
+    beforeTest { descriptor ->
+        logger.lifecycle("test: " + descriptor + "  Running")
+    }
+
+    onOutput { descriptor, event ->
+        logger.lifecycle("test: " + descriptor + ": " + event.message )
+    }
+    afterTest { descriptor, result ->
+        logger.lifecycle("test: " + descriptor + ": " + result )
+    }
+}
+
+appengine {
+    run {
+
+    }
+}
+
+group   = "com.example.appenginej8"        // Generated output GroupId
+version = "1.0-SNAPSHOT"       // Version in generated output
+
+sourceCompatibility = 1.8     // App Engine Flexible uses Java 8
+targetCompatibility = 1.8     // App Engine Flexible uses Java 8
