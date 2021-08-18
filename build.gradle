@@ -19,14 +19,15 @@ repositories {
 	mavenCentral()
 }
 
+repositories { jcenter() }
+dependencies { testImplementation "org.mockito:mockito-core:1.+" }
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-jetty'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation('org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.mockito:mockito-inline:{mockitoversion}'
-        testImplementation 'org.mockito:mockito-junit-jupiter:{mockitoversion}') {
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
 }
