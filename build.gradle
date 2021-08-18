@@ -24,7 +24,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-jetty'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+	testImplementation('org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.mockito:mockito-inline:{mockitoversion}'
+        testImplementation 'org.mockito:mockito-junit-jupiter:{mockitoversion}') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
 }
